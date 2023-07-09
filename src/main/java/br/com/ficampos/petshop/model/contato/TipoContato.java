@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo.contato;
+package br.com.ficampos.petshop.model.contato;
 
 public enum TipoContato {
 

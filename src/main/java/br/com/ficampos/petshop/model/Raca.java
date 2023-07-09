@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo;
+package br.com.ficampos.petshop.model;
 
 import br.com.ficampos.petshop.dto.RacaDTO;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,10 +20,18 @@ public class Raca extends EntidadeBase<RacaDTO, Raca> {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqRaca")
     private Long id;
     @Column(nullable = false)
-    private String descricao;
+    private String nome;
+    @OneToMany(mappedBy = "raca", fetch = FetchType.LAZY)
+    private List<Pet> pet;
 
     @Override
     public Raca fromDTO(RacaDTO dto) {
-        return null;
+        nome = dto.getNome();
+        return this;
+    }
+
+    @Override
+    public RacaDTO toDTO() {
+        return new RacaDTO(id, nome);
     }
 }

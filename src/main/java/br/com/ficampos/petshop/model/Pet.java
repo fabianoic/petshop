@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo;
+package br.com.ficampos.petshop.model;
 
 import br.com.ficampos.petshop.dto.PetDTO;
 import lombok.AllArgsConstructor;
@@ -19,19 +19,26 @@ public class Pet extends EntidadeBase<PetDTO, Pet> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqPet")
     private Long id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CLIENTEID", referencedColumnName = "ID")
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "RACAID", referencedColumnName = "ID")
     private Raca raca;
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(value = TemporalType.DATE)
     private Date dtNascimento;
     @Column(nullable = false)
     private String nome;
 
     @Override
     public Pet fromDTO(PetDTO dto) {
-        return null;
+        dtNascimento = dto.getDtNascimento();
+        nome = dto.getNome();
+        return this;
+    }
+
+    @Override
+    public PetDTO toDTO() {
+        return new PetDTO(id, null, raca.toDTO(), dtNascimento, nome);
     }
 }

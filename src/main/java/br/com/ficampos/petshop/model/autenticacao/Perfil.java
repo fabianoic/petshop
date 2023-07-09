@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo.autenticacao;
+package br.com.ficampos.petshop.model.autenticacao;
 
 public enum Perfil {
     ADMIN("Admin"), CLIENTE("Cliente");
@@ -7,5 +7,9 @@ public enum Perfil {
 
     Perfil(String nome) {
         this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

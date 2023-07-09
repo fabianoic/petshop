@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo;
+package br.com.ficampos.petshop.model;
 
 import br.com.ficampos.petshop.dto.AtendimentoDTO;
 import lombok.AllArgsConstructor;
@@ -32,6 +32,11 @@ public class Atendimento extends EntidadeBase<AtendimentoDTO, Atendimento> {
 
     @Override
     public Atendimento fromDTO(AtendimentoDTO dto) {
+        return null;
+    }
+
+    @Override
+    public AtendimentoDTO toDTO() {
         return null;
     }
 }

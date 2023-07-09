@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo;
+package br.com.ficampos.petshop.model;
 
 import br.com.ficampos.petshop.dto.EnderecoDTO;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ public class Endereco extends EntidadeBase<EnderecoDTO, Endereco> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqEndereco")
     private Long id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CLIENTEID", referencedColumnName = "ID")
     private Cliente cliente;
     @Column(nullable = false)
@@ -32,12 +32,19 @@ public class Endereco extends EntidadeBase<EnderecoDTO, Endereco> {
     @Column
     private String tag;
 
-
-
-
-
     @Override
     public Endereco fromDTO(EnderecoDTO dto) {
-        return null;
+        id = dto.getId();
+        logradouro = dto.getLogradouro();
+        cidade = dto.getCidade();
+        bairro = dto.getBairro();
+        complemento = dto.getComplemento();
+        tag = dto.getTag();
+        return this;
+    }
+
+    @Override
+    public EnderecoDTO toDTO() {
+        return new EnderecoDTO(id, null, logradouro, cidade, bairro, complemento, tag);
     }
 }

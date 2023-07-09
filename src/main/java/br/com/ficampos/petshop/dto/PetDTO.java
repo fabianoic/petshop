@@ -1,6 +1,8 @@
 package br.com.ficampos.petshop.dto;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,12 +13,14 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PetDTO implements Serializable {
 
+    private Long id;
     @NotNull
-    private ClienteDTO clienteDTO;
+    private ClienteDTO cliente;
     @NotNull
-    private RacaDTO racaDTO;
+    private RacaDTO raca;
     @NotNull
     private Date dtNascimento;
     @NotNull

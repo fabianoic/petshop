@@ -1,14 +1,13 @@
-package br.com.ficampos.petshop.modelo.contato;
+package br.com.ficampos.petshop.model.contato;
 
 import br.com.ficampos.petshop.dto.ContatoDTO;
-import br.com.ficampos.petshop.modelo.Cliente;
-import br.com.ficampos.petshop.modelo.EntidadeBase;
+import br.com.ficampos.petshop.model.Cliente;
+import br.com.ficampos.petshop.model.EntidadeBase;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor
@@ -28,14 +27,21 @@ public class Contato extends EntidadeBase<ContatoDTO, Contato> {
     private String tag;
     @Enumerated(value = EnumType.STRING)
     private TipoContato tipo;
-    @Pattern(regexp = "^\\(\\d{2}\\) \\d{5}-\\d{4}$|^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")
-    @Column(nullable = false)
+    //    @Pattern(regexp = "^\\(\\d{2}\\) \\d{5}-\\d{4}$|^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")
+    @Column(nullable = false, unique = true)
     private String valor;
-
-
 
     @Override
     public Contato fromDTO(ContatoDTO dto) {
-        return null;
+        id = dto.getId();
+        tag = dto.getTag();
+        tipo = TipoContato.valueOf(dto.getTipo());
+        valor = dto.getValor();
+        return this;
+    }
+
+    @Override
+    public ContatoDTO toDTO() {
+        return new ContatoDTO(id, null, tag, tipo.name(), valor);
     }
 }

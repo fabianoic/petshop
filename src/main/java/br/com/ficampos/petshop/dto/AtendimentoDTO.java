@@ -1,6 +1,6 @@
 package br.com.ficampos.petshop.dto;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Date;
 public class AtendimentoDTO implements Serializable {
 
     @NotNull
-    private PetDTO petDTO;
+    private PetDTO pet;
     @NotNull
     private String descricao;
     @NotNull

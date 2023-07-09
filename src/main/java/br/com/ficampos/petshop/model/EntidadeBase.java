@@ -1,4 +1,4 @@
-package br.com.ficampos.petshop.modelo;
+package br.com.ficampos.petshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
