@@ -1,0 +1,2 @@
+insert into usuario(id, cpf, nome, perfil, senha, optmisticklock, dtupdated, dtcreated)
+values (nextval('sequsuario'), '46386919009', 'Fabiano Campos', 'ADMIN', 'teste123', 1, '2023-06-27', '2023-06-27');
